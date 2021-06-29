@@ -8,6 +8,7 @@ const MaterialSide = ({ data, materialIndex }) => {
     activeUnit,
     activeComponent,
     addValueToMaterialInVendor,
+  removeMaterialfromCOmponent
   } = useForm();
 
   const updateValuesInmaterrial = (e) =>
@@ -16,14 +17,42 @@ const MaterialSide = ({ data, materialIndex }) => {
       activeRoomNo,
       activeUnit,
       activeComponent,
-      materialIndex
+      materialIndex,
+      
     );
   console.log(data);
   return (
     <div className="my-4">
-      <div>
+      <div className="fancy relative text-gray-400 my-4">
         <span>Material {materialIndex + 1}</span>
+        <div
+          onClick={() => {
+            removeMaterialfromCOmponent(
+              activeRoomNo,
+              activeUnit,
+              activeComponent,
+              materialIndex
+            );
+          }}
+          className=" inline-flex  absolute text-center text-blueGray-300  bg-transparent rounded  items-top  w-auto right-0 cursor-pointer -mt-2 "
+        >
+           <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 inline-flex items-center"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </div>
       </div>
+      
 
       <div className="flex my-2">
         <div>

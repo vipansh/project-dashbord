@@ -77,13 +77,13 @@ export function FormProvider({ children }) {
   const [activeVendor, setActiveVendor] = useState();
   const [formData, setFormData] = useState(() => {
     setLoading(false);
-    let localData = localStorage.getItem("formData")
-    if (localData) return JSON.parse(localData)
+    let localData = localStorage.getItem("formData");
+    if (localData) return JSON.parse(localData);
     return roomTemp;
   });
 
   function saveToLocalStorage() {
-    localStorage.setItem("formData", JSON.stringify(formData))
+    localStorage.setItem("formData", JSON.stringify(formData));
   }
   function addOneRoomUnit(id) {
     setLoading(true);
@@ -173,20 +173,20 @@ export function FormProvider({ children }) {
     tempClone[formPosition].data[roomIndex].components[
       componentIndex
     ].workVendor = [
-        ...tempClone[formPosition].data[roomIndex].components[componentIndex]
-          .workVendor,
-        {
-          id: "work" + ID(),
-          workType: "",
-          category: "",
-          heading: "",
-          discription: "",
-          quantity: "",
-          rate: "",
-          unit: "",
-          milestones: [],
-        },
-      ];
+      ...tempClone[formPosition].data[roomIndex].components[componentIndex]
+        .workVendor,
+      {
+        id: "work" + ID(),
+        workType: "",
+        category: "",
+        heading: "",
+        discription: "",
+        quantity: "",
+        rate: "",
+        unit: "",
+        milestones: [],
+      },
+    ];
     setFormData(tempClone);
     setLoading(false);
   }
@@ -196,15 +196,30 @@ export function FormProvider({ children }) {
     tempClone[formPosition].data[roomIndex].components[
       componentIndex
     ].material = [
-        ...tempClone[formPosition].data[roomIndex].components[componentIndex]
-          .material,
-        {
-          item: "",
-          specification: "",
-          quantity: "",
-          rate: "",
-        },
-      ];
+      ...tempClone[formPosition].data[roomIndex].components[componentIndex]
+        .material,
+      {
+        item: "",
+        specification: "",
+        quantity: "",
+        rate: "",
+      },
+    ];
+    setFormData(tempClone);
+    setLoading(false);
+  }
+
+  function removeMaterialfromCOmponent(
+    formPosition,
+    roomIndex,
+    componentIndex,
+    materialIndex
+  ) {
+    setLoading(true);
+    let tempClone = [...formData];
+    tempClone[formPosition].data[roomIndex].components[
+      componentIndex
+    ].material.splice(materialIndex, 1);
     setFormData(tempClone);
     setLoading(false);
   }
@@ -233,7 +248,9 @@ export function FormProvider({ children }) {
     vendorIndex
   ) {
     let tempClone = [...formData];
-    tempClone[formPosition].data[roomIndex].components[componentIndex].workVendor.splice(vendorIndex, 1);
+    tempClone[formPosition].data[roomIndex].components[
+      componentIndex
+    ].workVendor.splice(vendorIndex, 1);
     setActiveVendor(-1);
     setFormData(tempClone);
   }
@@ -261,13 +278,13 @@ export function FormProvider({ children }) {
     tempClone[formPosition].data[roomIndex].components[
       componentIndex
     ].workVendor[vendorIndex].milestones = [
-        ...tempClone[formPosition].data[roomIndex].components[componentIndex]
-          .workVendor[vendorIndex].milestones,
-        {
-          milestone: "",
-          percentage: "",
-        },
-      ];
+      ...tempClone[formPosition].data[roomIndex].components[componentIndex]
+        .workVendor[vendorIndex].milestones,
+      {
+        milestone: "",
+        percentage: "",
+      },
+    ];
     setFormData(tempClone);
     setLoading(false);
   }
@@ -281,7 +298,9 @@ export function FormProvider({ children }) {
   ) {
     setLoading(true);
     let tempClone = [...formData];
-    tempClone[formPosition].data[roomIndex].components[componentIndex].workVendor[vendorIndex].milestones.splice(mileStoneIndex, 1);
+    tempClone[formPosition].data[roomIndex].components[
+      componentIndex
+    ].workVendor[vendorIndex].milestones.splice(mileStoneIndex, 1);
     setFormData(tempClone);
     setLoading(false);
   }
@@ -347,8 +366,9 @@ export function FormProvider({ children }) {
     addMaterialsToComponent,
     addMileStone,
     removeMileStone,
+    removeMaterialfromCOmponent,
     addValueToMileStone,
-    saveToLocalStorage
+    saveToLocalStorage,
   };
   if (loading) {
     return <div>loading....</div>;
