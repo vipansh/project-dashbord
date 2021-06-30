@@ -39,7 +39,7 @@ const HomePage = () => {
         />
       )}
       <div
-        className="grid grid-cols-9 gap-1 h-full bg-gray-50 p-8 rounded"
+        className="grid grid-cols-10 gap-1 h-full bg-gray-50 p-8 rounded"
         style={{ height: "55rem" }}
       >
         <div className=" col-span-2   border-2 mx-4 rounded-xl h-5/6 overflow-x-auto relative  ">
@@ -95,7 +95,7 @@ const HomePage = () => {
           </div>
         </div>
         {activeUnit + 1 ? (
-          <div className=" col-span-2 p-4 px-4  border-2 mx-4 rounded-xl h-5/6 overflow-x-auto">
+          <div className=" col-span-3 p-4 px-4  border-2 mx-4 rounded-xl h-5/6 overflow-x-auto">
             {<SingleComponent />}
           </div>
         ) : (
