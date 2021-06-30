@@ -4,10 +4,12 @@ import SingleRoomCard from "../components/RoomCard/SingleRoomCard";
 import SingleComponent from "../components/UnitCard/SingleComponent";
 import VendorCard from "../components/VendorCard";
 import { useForm } from "../context/FormContext";
-
+import SaveModal from "../components/SaveModal";
 const HomePage = () => {
   const [savedAnimation, setsavedAnimation] = useState(false);
   const [savedStatus, setSavedStatus] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const {
     activeUnit,
     activeComponent,
@@ -15,9 +17,27 @@ const HomePage = () => {
     formData,
     saveToLocalStorage,
   } = useForm();
-
+  function onSaveAnimation() {
+    setsavedAnimation(true);
+    setShowModal(false);
+    saveToLocalStorage();
+    setTimeout(() => {
+      setSavedStatus(true);
+    }, 1000);
+    setTimeout(() => {
+      setsavedAnimation(false);
+      setSavedStatus(false);
+    }, 1800);
+  }
   return (
     <div className="">
+      {showModal && (
+        <SaveModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          onSaveAnimation={onSaveAnimation}
+        />
+      )}
       <div
         className="grid grid-cols-9 gap-1 h-full bg-gray-50 p-8 rounded"
         style={{ height: "55rem" }}
@@ -36,15 +56,7 @@ const HomePage = () => {
             <div className="flex flex-col justify-center items-center">
               <button
                 onClick={() => {
-                  setsavedAnimation(true);
-                  saveToLocalStorage();
-                  setTimeout(() => {
-                    setSavedStatus(true);
-                  }, 1000);
-                  setTimeout(() => {
-                    setsavedAnimation(false);
-                    setSavedStatus(false);
-                  }, 1800);
+                  setShowModal(true);
                 }}
                 disabled={savedAnimation}
                 className={`px-5 py-3 w-full rounded-xl text-sm font-medium text-white bg-blue-600 hover:bg-blue-800 active:bg-grey-900 focus:outline-none border-4 border-white focus:border-purple-200 transition-all `}
