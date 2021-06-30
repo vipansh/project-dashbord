@@ -2,7 +2,6 @@ import React from "react";
 import { useForm } from "../../context/FormContext";
 
 const MaterialSide = ({ data, materialIndex }) => {
-  console.log(data);
   const {
     activeRoomNo,
     activeUnit,
@@ -20,7 +19,6 @@ const MaterialSide = ({ data, materialIndex }) => {
       materialIndex,
       
     );
-  console.log(data);
   return (
     <div className="my-4">
       <div className="fancy relative text-gray-400 my-4">
@@ -58,7 +56,7 @@ const MaterialSide = ({ data, materialIndex }) => {
         <div>
           <div className="relative flex w-full flex-wrap items-stretch ">
             <input
-              value={"Carpenter"}
+              defaultValue={"Carpenter"}
               type="text"
               className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-gray-300  rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pr-10"
             />
@@ -128,7 +126,7 @@ const MaterialSide = ({ data, materialIndex }) => {
         <div>
           <div className="relative flex w-full flex-wrap items-stretch ">
             <input
-              value={"Plywood"}
+              defaultValue={"Plywood"}
               type="text"
               className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-gray-300  rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pr-10"
             />
